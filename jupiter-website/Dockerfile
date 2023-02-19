@@ -3,27 +3,23 @@ FROM  amazonlinux:latest
 # install all needed dependencies
 RUN yum update -y && \
     yum install -y httpd && \
-    yum yum search wget && \
     yum install wget -y && \
-    yum instal unzip -y
-
+    yum install unzip -y
 
 # change direcotry to httpd html dir 
-
 RUN cd /var/www/html
 
 # download website files
-RUN wget https://github.com/azeezsalu/jupiter/archive/refs/heads/main.zip 
+RUN wget https://github.com/azeezsalu/techmax/archive/refs/heads/main.zip
 
-#unzip downloaded zip file
-RUN upzip main.zip
+# unzip folder
+RUN unzip main.zip
 
-#copy content of unzipped file to www dir
-RUN cp -r techmax-main/* /var/www/html 
+# copy files into html directory
+RUN cp -r techmax-main/*  /var/www/html/
 
 # remove unwanted folder
-
-RUN rm -rf techmax-main/*
+RUN rm -rf techmax-main main.zip
 
 #specify port
 EXPOSE 80
